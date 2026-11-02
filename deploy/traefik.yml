@@ -1,0 +1,14 @@
+# Merge into the primary's shared ~/openpak/deploy/traefik/dynamic.yml. XAM dials the UpdateUriRoot1 host
+# (content.xboxlive.com) directly; priority 50 beats x360-dashboard-web (Host only, 45) for this prefix.
+http:
+  routers:
+    x360-som-web:
+      entryPoints: [web]
+      rule: Host(`content.xboxlive.com`) && PathPrefix(`/fffe07d1/`)
+      priority: 50
+      service: x360-som-http
+  services:
+    x360-som-http:
+      loadBalancer:
+        servers:
+        - url: http://openpak-x360-som:10045
