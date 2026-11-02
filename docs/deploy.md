@@ -1,6 +1,6 @@
 # Deploy
 
-Primary host, quadlet `deploy/openpak-x360-som.container` (IP 10.89.2.209 pinned in openpak.network), Traefik
+Primary host, quadlet `deploy/openpak-x360-som.container` (IP 10.89.2.108 pinned in openpak.network), Traefik
 router `x360-som-web` from `deploy/traefik.yml` merged into the shared dynamic file:
 `Host(content.xboxlive.com) && PathPrefix(/fffe07d1/)`, priority 50, above the dashboard's Host-only router.
 No gateway key: XAM fetches over plain HTTP, not the secure channel.

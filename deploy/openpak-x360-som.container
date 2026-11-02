@@ -8,7 +8,7 @@ ContainerName=openpak-x360-som
 Image=ghcr.io/openpak/x360-som:latest
 AutoUpdate=registry
 Network=openpak.network
-IP=10.89.2.209
+IP=10.89.2.108
 Environment=X360_SOM_ADDR=:10045
 # Same OpenPak content key as x360-dashboard, so one --xsigner_public_key pin covers both.
 Environment=X360_SOM_SIGNING_KEY=/run/signing/content-key.pem
