@@ -15,6 +15,7 @@ import (
 	"syscall"
 	"time"
 
+	"github.com/openpak/x360-common/httplog"
 	"github.com/openpak/x360-som/internal/som"
 )
 
@@ -71,7 +72,7 @@ func main() {
 	log.Info("manifest built", "SOMRevision", s.RevHex(), "files", len(files), "bytes", len(m))
 
 	addr := env("X360_SOM_ADDR", ":10045")
-	srv := &http.Server{Addr: addr, Handler: s, ReadHeaderTimeout: 10 * time.Second}
+	srv := &http.Server{Addr: addr, Handler: httplog.Wrap(s), ReadHeaderTimeout: 10 * time.Second}
 	ctx, stop := signal.NotifyContext(context.Background(), os.Interrupt, syscall.SIGTERM)
 	defer stop()
 	go func() {
