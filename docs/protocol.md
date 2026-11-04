@@ -23,7 +23,7 @@ note (see docs/evidence.md).
 
 | Offset | Size | Field |
 | --- | --- | --- |
-| 0x00 | 4 | `mnox` |
+| 0x00 | 4 | `xonm` |
 | 0x04 | 4 | signed length (whole body) |
 | 0x10 | 4 | type, 3 |
 | 0x18 | 8 | revision (SOMRevision) |

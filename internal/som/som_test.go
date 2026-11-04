@@ -21,7 +21,7 @@ func TestManifest(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	if string(m[:4]) != "XMNP" || string(m[0x138:0x13c]) != "mnox" {
+	if string(m[:4]) != "XMNP" || string(m[0x138:0x13c]) != "xonm" {
 		t.Fatal("magic")
 	}
 	b := m[0x138:]

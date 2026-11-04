@@ -65,7 +65,7 @@ func body(rev uint64, files []File) []byte {
 	T := bodyHdr
 	pool := T + 4 + entryLen*len(files)
 	b := make([]byte, pool)
-	copy(b, "mnox")
+	copy(b, "xonm")
 	binary.BigEndian.PutUint32(b[0x10:], 3)
 	binary.BigEndian.PutUint64(b[0x18:], rev)
 	binary.BigEndian.PutUint32(b[0x28:], uint32(T))
