@@ -37,7 +37,7 @@ func TestManifest(t *testing.T) {
 	}
 	e := b[0x34:]
 	off := binary.BigEndian.Uint32(e[0x1c:])
-	if binary.BigEndian.Uint32(e[0x18:]) != 3 || string(e[0x38:0x4c]) != string(files[0].ID[:]) || binary.BigEndian.Uint16(b[off:]) != 15 || string(b[off+2:off+17]) != "Dash.Social.lex" || b[off+17] != 0 {
+	if binary.BigEndian.Uint32(e[0x18:]) != 3 || string(e[0x38:0x4c]) != string(files[0].ID[:]) || binary.BigEndian.Uint16(b[off:]) != 16 || binary.BigEndian.Uint32(e[0x00:]) != off || string(b[off+2:off+17]) != "Dash.Social.lex" || b[off+17] != 0 {
 		t.Fatal("entry")
 	}
 	if len(URLID(files[0].ID)) != 40 {

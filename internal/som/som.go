@@ -72,10 +72,12 @@ func body(rev uint64, files []File) []byte {
 	binary.BigEndian.PutUint32(b[T:], uint32(len(files)))
 	for i, f := range files {
 		off := uint32(len(b))
-		b = append(b, byte(len(f.Name)>>8), byte(len(f.Name)))
+		n := len(f.Name) + 1 // XAM's string reader (FUN_816ECDA0) counts the NUL and checks the last byte is 0
+		b = append(b, byte(n>>8), byte(n))
 		b = append(b, f.Name...)
 		b = append(b, 0)
 		e := b[T+4+i*entryLen:]
+		binary.BigEndian.PutUint32(e[0x00:], off) // lookup name (FUN_816ECF20 compares this)
 		binary.BigEndian.PutUint64(e[0x04:], 1)
 		binary.BigEndian.PutUint32(e[0x14:], 0) // flags: online entry
 		binary.BigEndian.PutUint32(e[0x18:], 3) // node type: module
