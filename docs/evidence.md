@@ -17,3 +17,9 @@ From the static RE note `re-som-manifest` (XAM base 0x815F0000, dash base 0x9200
 - [I] Entry fields 0x04, 0x20, 0x24 and the header bytes 0x04..0x27 are not load-bearing per the note.
 
 Probes for a Wharf run: FUN_816ebe40, FUN_8168ba58 (`\sap\online`), FUN_8168bef0, FUN_8168cc38, FUN_816ed670.
+
+## Verified in Wharf (2026-11-05)
+
+- Manifest accepted with strict slot-0 verify (OpenPak key); a flipped signature byte is rejected (8B050012).
+- By-name lookup (`XdfCacheItem`, XAM export 0x654) needs the lookup name at entry+0x00 and a NUL-counted string length; with both, XAM requests `/fffe07d1/files/<id>/<name>` and stores the file in `\sap\online\00000000\`. The raw Lua `.lex` was accepted (completion 0, length 0x597): no XEX-header hash rejection for these files.
+- The stock dash never names `Dash.Social.lex`; the by-name request was triggered through the Xdf export from a test helper (patch in scratch/wharf/wharf-xdf-helper-122.patch). A real in-dash trigger is still a separate question.
